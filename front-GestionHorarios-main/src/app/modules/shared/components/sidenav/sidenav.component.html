@@ -1,0 +1,70 @@
+<div class="dashboard-container" [class.is-mobilel]="mobileQuery.matches">
+    <!--Enpiza Toolbar-->
+    <mat-toolbar color="primary" class="dashboard-toolbar">
+        <button mat-icon-button (click)= "snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 class="app-name">S-GestionHorarios</h1>
+
+      <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+        <ul fxLayout="row" fxLayoutGap="28px">
+            <li>
+                <button mat mat-icon-button>
+                    <mat-icon>help_outline</mat-icon>
+                </button>
+            </li>
+            <li>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon>person_outline</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>exit-to-app</mat-icon>
+                        Cerrar Sesion
+                    </button>
+
+                </mat-menu>
+            </li>
+
+        </ul>
+
+      </div>
+
+    </mat-toolbar>
+
+    <!--EMPIEZA SIDENAV-->
+    <!--evalua el si esta dentro de la mediaquery correspondiente-->
+    <mat-sidenav-container class="sidenav-container"
+                      [style.marginTop.px]= "mobileQuery.matches ? 56: 0">
+            <mat-sidenav #snav [mode]= "mobileQuery.matches? 'over': 'side'"
+            [fixedInViewport]= "mobileQuery.matches" fixedTopGap="56">
+
+                <mat-nav-list>
+                    <!--perfil-->
+                    <div class="profile-card">
+                        <div class="header">
+                            <h2>Juan Ruales</h2>
+                            <h4>juancarcaicedo@unicauca.edu</h4>
+                           
+                        </div>
+                    </div>
+                    <!--hacemos una division con respcto al perfil con matdivider-->
+                    <mat-divider></mat-divider>
+                    <!--iteramos el menu -->
+                    <a mat-list-item [routerLink]="nav.route" *ngFor= "let nav of menuNav">
+                        <mat-icon class="icono">{{ nav.icon }}</mat-icon>
+                        {{ nav.name }}
+
+                    </a>
+
+                </mat-nav-list>
+
+          </mat-sidenav>
+
+          <mat-sidenav-content>
+            <router-outlet></router-outlet>
+          </mat-sidenav-content>
+
+    </mat-sidenav-container>
+    
+    
+</div>
+

@@ -1,0 +1,32 @@
+<h2 mat mat-dialog-title> {{estadoFormulario}} </h2>
+
+<mat-dialog-content>
+    <form [formGroup]="recursoForm">
+
+        <div class="category-container">
+            <mat-form-field>
+                <input matInput placeholder="codigo" formControlName="rec_codigo" required>
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput placeholder="descripcion" formControlName= "rec_descripcion" required></textarea>
+            </mat-form-field>
+    
+            <mat-form-field>
+                <textarea matInput placeholder="tipo" formControlName="rec_tipo" required></textarea>
+            </mat-form-field>
+
+        </div>
+    </form>
+
+    <mat-dialog-actions>
+        <button mat-button color="primary" (click)="onSave()" [disabled]="recursoForm.invalid">
+            <mat-icon>save</mat-icon> Guardar
+
+        </button>
+
+        <button mat-button color="primary" (click)="onCancel()">
+            <mat-icon>cancel</mat-icon>Cancelar
+        </button>
+    </mat-dialog-actions>
+
+</mat-dialog-content>
